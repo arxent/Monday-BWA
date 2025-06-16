@@ -30,6 +30,7 @@ Route::middleware(['auth:sanctum', 'role:manager'])->group(function () {
     Route::apiResource('roles', RoleController::class);
 
     Route::post('users/roles', [UserRoleController::class, 'assignRole']);
+    Route::get('users/{user}/roles', [UserRoleController::class, 'getUserRoles']);
 
     Route::apiResource('categories', CategoryController::class);
     Route::apiResource('products', ProductController::class);

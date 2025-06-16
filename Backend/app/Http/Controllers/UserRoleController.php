@@ -60,4 +60,11 @@ class UserRoleController extends Controller
         }
     }
 
+    public function getUserRoles($userId)
+    {
+        $roles = $this->userRoleService->listUserRoles($userId);
+        return response()->json($roles);
+    }
+
+
 }

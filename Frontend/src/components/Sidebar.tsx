@@ -56,13 +56,13 @@ const Sidebar = () => {
           iconBlue: "/assets/images/icons/note-2-blue-fill.svg",
           roles: ["manager"],
         },
-        {
-          label: "Warehouses",
-          path: "/warehouses",
-          iconBlack: "/assets/images/icons/buildings-2-black.svg",
-          iconBlue: "/assets/images/icons/buildings-2-blue-fill.svg",
-          roles: ["manager"],
-        },
+        // {
+        //   label: "Warehouses",
+        //   path: "/warehouses",
+        //   iconBlack: "/assets/images/icons/buildings-2-black.svg",
+        //   iconBlue: "/assets/images/icons/buildings-2-blue-fill.svg",
+        //   roles: ["manager"],
+        // },
         {
           label: "Merchants",
           path: "/merchants",

@@ -21,7 +21,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $fields = ['id', 'name', 'thumbnail', 'price', 'category_id'];
+        $fields = ['id', 'name', 'thumbnail', 'stock' ,'price', 'category_id'];
         $products = $this->productService->getAll($fields);
         return response()->json(ProductResource::collection($products));
     }
@@ -29,7 +29,7 @@ class ProductController extends Controller
     public function show(int $id)
     {
         try {
-            $fields = ['id', 'name', 'thumbnail', 'price', 'about', 'category_id'];
+            $fields = ['id', 'name', 'thumbnail', 'stock', 'price', 'about', 'category_id'];
             $product = $this->productService->getById($id, $fields);
             return response()->json(new ProductResource($product));
         } catch (ModelNotFoundException $e) {

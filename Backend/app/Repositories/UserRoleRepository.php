@@ -13,7 +13,7 @@ class UserRoleRepository
         $user = User::findOrFail($userId);
         $role = Role::findOrFail($roleId);
 
-        $user->assignRole($role->name);
+        $user->syncRoles([$role->name]);
 
         return $user;
     }

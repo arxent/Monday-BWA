@@ -132,6 +132,16 @@ const ProductList = () => {
                               </p>
                             </div>
                           </div>
+                          <div className="flex items-center gap-[6px] w-[154px] shrink-0">
+                            <img
+                              src="/assets/images/icons/box-black.svg"
+                              className="size-6 flex shrink-0"
+                              alt="icon"
+                            />
+                            <p className="font-semibold text-lg text-nowrap w-[124px] truncate">
+                              {product.stock} Stock
+                            </p>
+                          </div>
                           <div className="flex items-center gap-[6px] min-w-[212px]">
                             <img
                               src={product.category.photo}

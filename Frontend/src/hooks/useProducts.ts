@@ -38,6 +38,7 @@ export const useCreateProduct = () => {
       const formData = new FormData();
       formData.append("name", payload.name);
       formData.append("price", payload.price.toString());
+      formData.append("stock", payload.stock.toString());
       formData.append("about", payload.about);
       formData.append("category_id", payload.category_id.toString());
       formData.append("is_popular", payload.is_popular ? "1" : "0");
@@ -71,6 +72,7 @@ export const useUpdateProduct = () => {
       
       formData.append("name", payload.name);
       formData.append("price", payload.price.toString());
+      formData.append("stock", payload.stock.toString());
       formData.append("about", payload.about);
       formData.append("category_id", payload.category_id.toString());
       formData.append("is_popular", payload.is_popular ? "1" : "0");

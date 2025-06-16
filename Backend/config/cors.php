@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:5174'], // domain.com, namakalian.com
+    'allowed_origins' => ['http://localhost:5173'], // domain.com, namakalian.com
 
     'allowed_origins_patterns' => [],
 

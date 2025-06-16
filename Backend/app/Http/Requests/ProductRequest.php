@@ -25,6 +25,7 @@ class ProductRequest extends FormRequest
             'name'  => 'required|string|max:255|unique:products,name,' . $this->route('product'),
             'thumbnail' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'about' => 'required|string',
+            'stock' => 'required|integer|min:0',
             'price' => 'required|integer|min:0',
             'category_id' => 'required|exists:categories,id',
             'is_popular' => 'boolean',

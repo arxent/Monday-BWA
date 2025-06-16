@@ -4,6 +4,7 @@ export interface Product {
   id: number;
   name: string;
   price: number;
+  stock: number;
   thumbnail: string;
   about: string;
   category_id: number;
@@ -38,6 +39,7 @@ export interface CreateCategoryPayload {
 export interface CreateProductPayload {
   name: string;
   price: number;
+  stock: number;
   about: string;
   category_id: number;
   is_popular: boolean;
