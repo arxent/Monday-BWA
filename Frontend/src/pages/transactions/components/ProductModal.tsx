@@ -22,28 +22,28 @@ const ProductModal = ({
   const updateQuantity = (productId: number, delta: number) => {
     setSelectedProducts((prev) => ({
       ...prev,
-      [productId]: Math.max(1, (prev[productId] || 1) + delta),
+      [productId]: Math.max(0, (prev[productId] || 0) + delta),
     }));
   };
 
   const handleAddToCart = () => {
     const updatedCart = [...cart];
 
-    Object.entries(selectedProducts).forEach(([productId, quantity]) => {
-      const mp = merchant?.products.find((mp) => mp.id === Number(productId));
 
+    Object.entries(selectedProducts).forEach(([productId, quantity]) => {
+      if (quantity <= 0) return;
+
+      const mp = merchant?.products.find((mp) => mp.id === Number(productId));
       const product = mp;
 
       if (product) {
         const existing = updatedCart.find((item) => item.id === product.id);
-
         const sub_total = product.price * quantity;
 
         if (existing) {
           existing.quantity += quantity;
           existing.sub_total = existing.price * existing.quantity;
         } else {
-          // updatedCart.push({ ...product, quantity, sub_total });
           updatedCart.push({
             id: product.id,
             name: product.name,
@@ -88,7 +88,7 @@ const ProductModal = ({
           <div className="flex flex-col gap-5 w-full">
 
           {merchant?.products.map((product) => {
-            const quantity = selectedProducts[product.id] || 1;
+            const quantity = selectedProducts[product.id] ?? 0;
             const subTotal = quantity * product.price;
 
             return (
@@ -142,7 +142,7 @@ const ProductModal = ({
                     />
                   </button>
                   <p className="amount min-w-12 font-medium text-[22px] text-center">
-                  {selectedProducts[product.id] || 1}
+                  {selectedProducts[product.id] || 0}
                   </p>
                   <button onClick={() => updateQuantity(product.id, 1)} type="button" className="plus flex size-6 shrink-0">
                     <img

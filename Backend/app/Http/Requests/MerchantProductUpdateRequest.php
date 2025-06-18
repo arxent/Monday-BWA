@@ -22,7 +22,6 @@ class MerchantProductUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'warehouse_id' => ['required', 'exists:warehouses,id'],
             'stock' => 'required|integer|min:0',
         ];
     }

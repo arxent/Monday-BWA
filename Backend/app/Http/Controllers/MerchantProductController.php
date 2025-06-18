@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MerchantProductRequest;
 use App\Http\Requests\MerchantProductUpdateRequest;
 use App\Services\MerchantProductService;
+use App\Services\MerchantService;
 use Illuminate\Http\Request;
 
 class MerchantProductController extends Controller
@@ -12,41 +13,30 @@ class MerchantProductController extends Controller
     //
 
     private MerchantProductService $merchantProductService;
+    private MerchantService $merchantService;
 
-    public function __construct(MerchantProductService $merchantProductService)
+    public function __construct(MerchantProductService $merchantProductService, MerchantService $merchantService,)
     {
+        $this->merchantService = $merchantService;
         $this->merchantProductService = $merchantProductService;
     }
 
-    public function store(MerchantProductRequest $request, int $merchant)
+    public function store(MerchantProductRequest $request, int $merchantId)
     {
-        $validated = $request->validated();
+        $this->merchantProductService->assignProductToMerchant([
+            'merchant_id' => $merchantId,
+            'product_id' => $request->product_id,
+            'stock' => $request->stock
+        ]);
 
-        $validated['merchant_id'] = $merchant;
-
-        $merchantProduct = $this->merchantProductService->assignProductToMerchant($validated);
-
-        return response()->json([
-            'message' => 'Product assigned to merchant successfully',
-            'data' => $merchantProduct,
-        ], 201);
+        return response()->json(['message' => 'Product assigned to merchant successfully']);
     }
 
     public function update(MerchantProductUpdateRequest $request, int $merchantId, int $productId)
     {
-        $validated = $request->validated();
+        $this->merchantProductService->updateStock($merchantId, $productId, $request->stock);
 
-        $merchantProduct = $this->merchantProductService->updateStock(
-            $merchantId,
-            $productId,
-            $validated['stock'],
-            $validated['warehouse_id']
-        );
-
-        return response()->json([
-            'message' => 'Stock updated successfully',
-            'data' => $merchantProduct,
-        ]);
+        return response()->json(['message' => 'Stock updated successfully']);
     }
 
     public function destroy(int $merchant, int $product)

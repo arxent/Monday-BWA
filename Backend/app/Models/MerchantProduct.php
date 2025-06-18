@@ -9,7 +9,7 @@ class MerchantProduct extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['merchant_id', 'product_id', 'stock', 'warehouse_id'];
+    protected $fillable = ['merchant_id', 'product_id', 'stock'];
 
     public function merchant()
     {
@@ -21,8 +21,4 @@ class MerchantProduct extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function warehouse()
-    {
-        return $this->belongsTo(Warehouse::class);
-    }
 }

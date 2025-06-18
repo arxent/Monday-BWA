@@ -12,10 +12,18 @@ class MerchantRepository
         return Merchant::select($fields)->with(['keeper', 'products.category'])->latest()->paginate(10);
     }
 
-    public function getById(int $id, array $fields)
+    public function getById(int $id, array $fields = ['*'])
     {
-        return Merchant::select($fields)->with(['keeper', 'products.category'])->findOrFail($id);
+        return Merchant::select($fields)
+            ->with([
+                'keeper',
+                'products' => function ($q) {
+                    $q->with('category');
+                }
+            ])
+            ->findOrFail($id);
     }
+
 
     public function create(array $data)
     {

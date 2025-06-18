@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('merchant_id')->constrained()->onDelete('cascade');
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->foreignId('warehouse_id')->constrained()->onDelete('cascade');
             $table->unsignedInteger('stock')->index();
             $table->softDeletes();
             $table->timestamps();

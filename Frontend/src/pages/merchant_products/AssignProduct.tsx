@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFetchMerchant } from "../../hooks/useMerchants";
 import { useFetchProducts } from "../../hooks/useProducts";
-import { useFetchWarehouses } from "../../hooks/useWarehouses";
 import Sidebar from "../../components/Sidebar";
 import {
   AssignProductFormData,
@@ -21,8 +20,6 @@ const AssignProduct = () => {
     Number(id)
   );
   const { data: products, isPending: loadingProducts } = useFetchProducts();
-  const { data: warehouses, isPending: loadingWarehouses } =
-    useFetchWarehouses();
 
   const { mutate: assignProduct, isPending } = useAssignProduct(); // ✅ Use `isPending`
 
@@ -40,7 +37,6 @@ const AssignProduct = () => {
 
     const payload: AssignProductPayload = {
       merchant_id: Number(id),
-      warehouse_id: Number(data.warehouse_id),
       product_id: Number(data.product_id),
       stock: Number(data.stock),
     };
@@ -71,7 +67,7 @@ const AssignProduct = () => {
 
   if (!merchant) return <p> merchant not found...</p>;
 
-  if (loadingMerchant || loadingProducts || loadingWarehouses)
+  if (loadingMerchant || loadingProducts)
     return <p>Loading...</p>;
 
   return (
@@ -163,36 +159,6 @@ const AssignProduct = () => {
                 <h2 className="font-semibold text-xl capitalize">
                   Complete the form
                 </h2>
-                <label className="group relative rounded-3xl border-[1.5px] border-monday-border focus-within:border-monday-black transition-300 overflow-hidden">
-                  <div className="flex items-center pr-4 absolute transform -translate-y-1/2 top-1/2 left-6 border-r-[1.5px] border-monday-border ">
-                    <img
-                      src="/assets/images/icons/buildings-2-grey.svg"
-                      className="flex size-6 shrink-0"
-                      alt="icon"
-                    />
-                  </div>
-                  <p className="placeholder font-medium text-monday-gray text-sm absolute -translate-y-1/2 left-[81px] top-[25px] group-has-[:invalid]:top-[36px] group-focus-within:top-[25px] transition-300">
-                    Warehouse ID
-                  </p>
-                  <select
-                    {...register("warehouse_id")}
-                    className="appearance-none w-full h-[72px] font-semibold text-lg outline-none pl-20 pr-6 pb-[14.5px] pt-[32px]"
-                  >
-                    {warehouses?.map((warehouse) => (
-                      <option key={warehouse.id} value={warehouse.id}>
-                        {warehouse.name}
-                      </option>
-                    ))}
-                  </select>
-                  <img
-                    src="/assets/images/icons/arrow-down-grey.svg"
-                    className="absolute transform -translate-y-1/2 top-1/2 right-6 size-6"
-                    alt="icon"
-                  />
-                </label>
-                {errors.warehouse_id && (
-                  <p className="text-red-500">{errors.warehouse_id.message}</p>
-                )}
 
                 <label className="group relative rounded-3xl border-[1.5px] border-monday-border focus-within:border-monday-black transition-300 overflow-hidden">
                   <div className="flex items-center pr-4 absolute transform -translate-y-1/2 top-1/2 left-6 border-r-[1.5px] border-monday-border ">

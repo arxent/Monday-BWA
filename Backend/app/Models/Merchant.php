@@ -21,7 +21,7 @@ class Merchant extends Model
     {
         return $this->belongsToMany(Product::class, 'merchant_products')
         ->withPivot('stock')
-        ->withPivot('warehouse_id')
+        ->withPivot('merchant_id')
         ->withTimestamps();
     }
 

@@ -31,7 +31,6 @@ export interface UpdateMerchantPayload {
 
 export interface AssignProductPayload {
   merchant_id: number;
-  warehouse_id: number;
   product_id: number;
   stock: number;
 }

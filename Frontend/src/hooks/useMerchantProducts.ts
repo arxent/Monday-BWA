@@ -25,7 +25,7 @@ export const useAssignProduct = () => {
       queryClient.invalidateQueries({ queryKey: ["merchant-product", merchant_id, product_id] });
       queryClient.invalidateQueries({ queryKey: ["merchant", merchant_id] });
       queryClient.invalidateQueries({ queryKey: ["products"] });
-      queryClient.invalidateQueries({ queryKey: ["warehouses"] });
+      // queryClient.invalidateQueries({ queryKey: ["warehouses"] });
       navigate(`/merchant-products/${merchant_id}`);
     },
   });
@@ -40,12 +40,12 @@ export const useUpdateMerchantProduct = () => {
     AxiosError<ApiErrorResponse>,
     AssignProductPayload
   >({
-    mutationFn: async ({ merchant_id, product_id, warehouse_id, stock }) => {
+    mutationFn: async ({ merchant_id, product_id, stock }) => {
       const formData = new FormData();
       formData.append("stock", stock.toString());
       formData.append("merchant_id", merchant_id.toString());
       formData.append("product_id", product_id.toString());
-      formData.append("warehouse_id", warehouse_id.toString()); // ✅ This is the missing line
+      // formData.append("warehouse_id", warehouse_id.toString());
       formData.append("_method", "PUT");
 
       await apiClient.post(
