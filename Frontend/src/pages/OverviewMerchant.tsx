@@ -237,7 +237,7 @@ const OverviewMerchant = () => {
                                     <p className="font-semibold text-xl text-monday-blue">
                                       Rp {tp.product.price.toLocaleString("id")}
                                       <span className="text-monday-gray">
-                                        (2x)
+                                        ({tp.quantity}x)
                                       </span>
                                     </p>
                                   </div>

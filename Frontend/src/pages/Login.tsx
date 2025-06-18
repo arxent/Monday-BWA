@@ -77,7 +77,7 @@ const Login = () => {
                   type="email"
                   value={email}
                   className="appearance-none w-full h-[72px] font-semibold text-lg rounded-3xl border-[1.5px] border-monday-border pl-20 pr-6 pb-[14.5px] pt-[34.5px] placeholder-shown:pt-[14.5px] focus:border-monday-black transition-300"
-                  placeholder="email address"
+                  placeholder=""
                 />
               </label>
               <label className="group relative">
@@ -112,7 +112,7 @@ const Login = () => {
                   />
                 </button>
               </label>
-              <p className="font-medium text-sm text-monday-gray">
+              {/* <p className="font-medium text-sm text-monday-gray">
                 Forget Password?{" "}
                 <a
                   href="#"
@@ -120,7 +120,7 @@ const Login = () => {
                 >
                   Reset Password
                 </a>
-              </p>
+              </p> */}
             </div>
             <button type="submit" className="btn btn-primary w-full font-bold">
               Sign In

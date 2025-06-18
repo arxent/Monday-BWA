@@ -109,13 +109,13 @@ const Sidebar = () => {
             },
           ],
         }, 
-        {
-          label: "Settings",
-          path: "/settings",
-          iconBlack: "/assets/images/icons/setting-black.svg",
-          iconBlue: "/assets/images/icons/setting-black.svg",
-          roles: ["manager", "keeper"],
-        },
+        // {
+        //   label: "Settings",
+        //   path: "/settings",
+        //   iconBlack: "/assets/images/icons/setting-black.svg",
+        //   iconBlue: "/assets/images/icons/setting-black.svg",
+        //   roles: ["manager", "keeper"],
+        // },
       ],
     },
   ];

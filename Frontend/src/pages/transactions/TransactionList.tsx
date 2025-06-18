@@ -211,6 +211,7 @@ const TransactionList = () => {
                             id="1-Product-Assigned"
                             className="flex flex-col gap-5"
                           >
+                            {/* tp dipakai sebagai parameter */}
                             {tx.transaction_products.map((tp) => (
                               <React.Fragment key={tp.id}>
                                 <div className="card flex items-center justify-between gap-3">
@@ -229,7 +230,7 @@ const TransactionList = () => {
                                       <p className="font-semibold text-xl text-monday-blue">
                                         Rp {tp.price.toLocaleString("id")}
                                         <span className="text-monday-gray">
-                                          (2x)
+                                          ({tp.quantity}x)
                                         </span>
                                       </p>
                                     </div>
